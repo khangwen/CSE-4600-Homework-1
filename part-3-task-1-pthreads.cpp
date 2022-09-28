@@ -3,6 +3,8 @@
   A very simple example demonstrating the usage of pthreads.
   Compile: g++ -o part-3-task-1-pthreads part-3-task-1-pthreads.cpp -lpthread
   Execute: ./pthreads_demo
+
+  Used pthreads code from professor
 */
 
 #include <pthread.h>
