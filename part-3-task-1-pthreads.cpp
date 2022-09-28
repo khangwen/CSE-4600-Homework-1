@@ -1,7 +1,7 @@
 /*
-  pthreads_demo.cpp
+  part-3-task-1-pthreads.cpp
   A very simple example demonstrating the usage of pthreads.
-  Compile: g++ -o pthreads_demo pthreads_demo.cpp -lpthread
+  Compile: g++ -o part-3-task-1-pthreads part-3-task-1-pthreads.cpp -lpthread
   Execute: ./pthreads_demo
 */
 
