@@ -8,17 +8,25 @@ Execute: ./shared_resource_mutex
 
 #define iterations 300000000
 long long shared_resource = 0;
+pthread_mutex_t mutex1;
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 // Thread function to modify shared resource
 void *inc_dec_resource(void *arg)
 {
+    // perform mutual exclusion
+    pthread_mutex_lock(&mutex1);
+
     // get the pointer from main thread and dereference it to put the value in resource_value
     int resource_value = *(int *)arg;
     for (int i = 0; i < iterations; i++)
     {
         shared_resource += resource_value;
     }
+
+    // unlock resource
+    pthread_mutex_unlock(&mutex1);
+
     pthread_exit(NULL);
 }
 
@@ -32,8 +40,8 @@ int main(void)
     // Thread 2 to increment shared resource
     int value2 = -1;
     pthread_create(&tid2, NULL, inc_dec_resource, &value2);
-    pthread_join(tid1, NULL);
     pthread_join(tid2, NULL);
+    pthread_join(tid1, NULL);
     printf("Shared resource value: %lld\n", shared_resource);
 
     return 0;
